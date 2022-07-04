@@ -29,7 +29,7 @@ class MenuSettingsTheme extends StatelessWidget {
           title: const Text('Oscuro'),
           // trailing: Switch(value: true, onChanged: (value) {}),
           trailing: Switch.adaptive(
-              value: appTheme.darkTheme,
+              value: appTheme.isDarkTheme,
               activeColor: appTheme.currentTheme.colorScheme.secondary,
               onChanged: (value) => appTheme.darkTheme = value),
         ),
@@ -43,7 +43,7 @@ class MenuSettingsTheme extends StatelessWidget {
           title: const Text('Personalizado'),
           // trailing: Switch(value: true, onChanged: (value) {}),
           trailing: Switch.adaptive(
-              value: appTheme.customTheme,
+              value: appTheme.isCustomTheme,
               activeColor: appTheme.currentTheme.colorScheme.secondary,
               onChanged: (value) => appTheme.customTheme = value),
         )

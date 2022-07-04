@@ -20,21 +20,24 @@ class TileModelWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appTheme =
-        Provider.of<ThemeChanger>(context).currentTheme.colorScheme.secondary;
+
+    final appTheme = Provider.of<ThemeChanger>(context);
+    final themeColor = appTheme.currentTheme.colorScheme.secondary;
 
     return Container(
       alignment: Alignment.center,
       width: double.infinity,
       height: 70,
-      decoration: _containerDecoration(),
+      decoration: appTheme.isLightTheme
+        ? _buildDecorationLight()
+        : _buildDecoration(),
 
       // child a mostrar en el container
       child: Stack(
         children: <Widget>[
           Positioned(
               child:
-                  Icon(iconData, size: 110, color: appTheme.withOpacity(0.1)),
+                  Icon(iconData, size: 110, color: themeColor.withOpacity(0.1)),
               right: 10,
               top: -10),
           GestureDetector(
@@ -82,7 +85,7 @@ class _MakeListTile extends StatelessWidget {
 
 // --------------------------------------------------------------------------
 // retorna el BoxDecoration del container
-BoxDecoration _containerDecoration() {
+BoxDecoration _buildDecorationLight() {
   return BoxDecoration(
     color: Colors.white,
     borderRadius: BorderRadius.circular(25),
@@ -98,7 +101,26 @@ BoxDecoration _containerDecoration() {
     ], stops: const <double>[
       0.05,
       0.35
-    ], begin: Alignment.topCenter, end: Alignment.bottomRight),
+    ], 
+    begin: Alignment.topCenter, 
+    end: Alignment.bottomRight),
+  );
+}
+// --------------------------------------------------------------------------
+BoxDecoration _buildDecoration() {
+  return BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.circular(25),
+    border: Border.all(color: Colors.white.withOpacity(0.1), width: 1),
+    gradient: LinearGradient(colors: <Color>[
+      const Color(0xff869FB7).withOpacity(0.2),
+      const Color(0xff73C9E0).withOpacity(0.3),
+    ], stops: const <double>[
+      0.05,
+      0.35
+    ], 
+    begin: Alignment.topCenter, 
+    end: Alignment.bottomRight),
   );
 }
 // --------------------------------------------------------------------------

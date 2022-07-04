@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
 
 import '../theme/theme.dart';
 
+
+// ------------------------------------------------------------------------
 class CardButton extends StatelessWidget {
   const CardButton(
       {Key? key,
@@ -17,37 +20,39 @@ class CardButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return GestureDetector(
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 3, horizontal: 10),
         width: double.infinity,
         height: 70,
-        decoration: BoxDecoration(
-            border: Border.all(color: Colors.white, width: 1),
-            gradient: LinearGradient(colors: <Color>[
-              const Color(0xff869FB7).withOpacity(0.2),
-              const Color(0xff73C9E0).withOpacity(0.3),
-            ], stops: const <double>[
-              0.05,
-              0.35
-            ], begin: Alignment.topCenter, end: Alignment.bottomRight),
-            borderRadius: _borderRadiusGeometry()),
+        decoration: _buildDecoration(),
         child: _ButtonContain(iconData: iconData, text: text),
       ),
       onTap: () => onPressed(),
     );
   }
-
-  BorderRadius _borderRadiusGeometry() {
-    return const BorderRadius.only(
-      topLeft: Radius.circular(35),
-      bottomRight: Radius.circular(35),
-      // bottomLeft: Radius.circular(30),
-      // topRight: Radius.circular(30),
-    );
-  }
+ 
+  // ----------------------------------------------------------------------
+  BoxDecoration _buildDecoration() {
+    return BoxDecoration(
+          border: Border.all(color: Colors.white, width: 1),
+          gradient: LinearGradient(colors: <Color>[
+            const Color(0xff869FB7).withOpacity(0.2),
+            const Color(0xff73C9E0).withOpacity(0.3),
+          ], stops: const <double>[
+            0.05,
+            0.35
+          ], begin: Alignment.topCenter, end: Alignment.bottomRight),
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(30),
+            bottomRight: Radius.circular(30)
+          )
+        );
+  } 
 }
 
+// ------------------------------------------------------------------------
 class _ButtonContain extends StatelessWidget {
   const _ButtonContain({Key? key, required this.iconData, required this.text})
       : super(key: key);
@@ -64,6 +69,7 @@ class _ButtonContain extends StatelessWidget {
   }
 }
 
+// ------------------------------------------------------------------------
 class _LeadingIconText extends StatelessWidget {
   const _LeadingIconText({
     Key? key,
@@ -104,6 +110,7 @@ class _LeadingIconText extends StatelessWidget {
   }
 }
 
+// ------------------------------------------------------------------------
 class _BackgroundIcon extends StatelessWidget {
   const _BackgroundIcon({
     Key? key,
@@ -119,7 +126,7 @@ class _BackgroundIcon extends StatelessWidget {
     return Positioned(
       child: Icon(
         iconData,
-        size: 120,
+        size: 130,
         color: appTheme.colorScheme.primary.withOpacity(0.1),
       ),
       top: -10,
@@ -127,3 +134,5 @@ class _BackgroundIcon extends StatelessWidget {
     );
   }
 }
+
+// ------------------------------------------------------------------------

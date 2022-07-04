@@ -9,9 +9,11 @@ enum EnumTheme { light, dark, custom }
 class ThemeChanger with ChangeNotifier {
   EnumTheme _enumTheme = EnumTheme.light;
 
-  bool get darkTheme => _enumTheme == EnumTheme.dark;
-  bool get customTheme => _enumTheme == EnumTheme.custom;
+  bool get isLightTheme  => _enumTheme == EnumTheme.light;
+  bool get isDarkTheme   => _enumTheme == EnumTheme.dark;
+  bool get isCustomTheme => _enumTheme == EnumTheme.custom;
 
+  // ------------------------------------------------------------------------
   ThemeData get currentTheme {
     switch (_enumTheme) {
       case EnumTheme.light:
